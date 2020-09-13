@@ -2,24 +2,22 @@ package com.sooyeon.sandramall.intro
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
-import com.sooyeon.sandramall.api.SandraMallApi
-import kotlinx.coroutines.runBlocking
+import com.sooyeon.sandramall.signup.SignupActivity
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.jetbrains.anko.setContentView
+import org.jetbrains.anko.startActivity
 
 class IntroActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val ui = IntroActivityUi()
-        ui.setContentView(this)
+        IntroActivityUi().setContentView(this)
 
-        runBlocking {
-            try {
-                val response = SandraMallApi.instance.hello()
-                Log.d(TAG, response.data)
-            } catch (e: Exception) {
-                Log.e(TAG, "HelloApi error", e)
-            }
+        GlobalScope.launch {
+            delay(1000)
+            startActivity<SignupActivity>()
+            finish()
         }
     }
 
