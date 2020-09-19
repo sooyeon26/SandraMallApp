@@ -2,7 +2,7 @@ package com.sooyeon.sandramall.signup
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.sooyeon.sandramall.api.ApiResponse
+import com.sooyeon.sandramall.api.response.ApiResponse
 import com.sooyeon.sandramall.api.SandraMallApi
 import com.sooyeon.sandramall.api.request.SignupRequest
 import kotlinx.coroutines.Dispatchers

@@ -2,7 +2,7 @@ package com.sooyeon.sandramall.intro
 
 import android.app.Activity
 import android.os.Bundle
-import com.sooyeon.sandramall.signup.SignupActivity
+import com.sooyeon.sandramall.signin.SigninActivity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -16,7 +16,7 @@ class IntroActivity : Activity() {
 
         GlobalScope.launch {
             delay(1000)
-            startActivity<SignupActivity>()
+            startActivity<SigninActivity>()
             finish()
         }
     }

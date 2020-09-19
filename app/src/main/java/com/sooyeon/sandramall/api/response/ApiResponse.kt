@@ -1,4 +1,4 @@
-package com.sooyeon.sandramall.api
+package com.sooyeon.sandramall.api.response
 
 data class ApiResponse<T>(
     val success: Boolean,
@@ -9,6 +9,10 @@ data class ApiResponse<T>(
 
     companion object {
         inline fun <reified T> error(message: String? = null) =
-            ApiResponse(false, null as T?, message)
+            ApiResponse(
+                false,
+                null as T?,
+                message
+            )
     }
 }
