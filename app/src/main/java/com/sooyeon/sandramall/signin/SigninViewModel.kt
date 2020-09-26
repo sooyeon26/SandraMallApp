@@ -7,6 +7,7 @@ import com.sooyeon.sandramall.api.SandraMallApi
 import com.sooyeon.sandramall.api.request.SigninRequest
 import com.sooyeon.sandramall.api.response.ApiResponse
 import com.sooyeon.sandramall.api.response.SigninResponse
+import com.sooyeon.sandramall.product.ProductMainActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import net.codephobia.ankomvvm.lifecycle.BaseViewModel
@@ -43,7 +44,7 @@ class SigninViewModel(app: Application) : BaseViewModel(app) {
             Prefs.userId = response.data.userId
 
             toast("Successfully logged in")
-            //TODO move to the item list page
+            startActivityAndFinish<ProductMainActivity>()
         } else {
             toast(response.message ?: "unknown error")
         }
