@@ -9,4 +9,11 @@
         <item name="background">@android:color/white</item>
     </style>
 
+    <style name="AppThemeActionBar" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="background">@android:color/white</item>
+    </style>
+
 </resources>
