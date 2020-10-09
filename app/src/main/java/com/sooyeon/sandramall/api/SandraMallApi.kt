@@ -1,12 +1,14 @@
 package com.sooyeon.sandramall.api
 
+import com.sooyeon.sandramall.api.request.ProductRegistrationRequest
 import com.sooyeon.sandramall.api.request.SigninRequest
 import com.sooyeon.sandramall.api.request.SignupRequest
 import com.sooyeon.sandramall.api.response.ApiResponse
 import com.sooyeon.sandramall.api.response.SigninResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import com.sooyeon.sandramall.product.response.ProductImageUploadResponse
+import okhttp3.MultipartBody
+import retrofit2.Response
+import retrofit2.http.*
 
 interface SandraMallApi {
 
@@ -18,6 +20,17 @@ interface SandraMallApi {
 
     @POST("/api/v1/signin")
     suspend fun signin(@Body signinRequest: SigninRequest): ApiResponse<SigninResponse>
+
+    @Multipart
+    @POST("/api/v1/product_images")
+    suspend fun uploadProductImages(
+        @Part images: MultipartBody.Part
+    ): ApiResponse<ProductImageUploadResponse>
+
+    @POST("/api/v1/products")
+    fun registerProduct(
+        @Body request: ProductRegistrationRequest
+    ): ApiResponse<Response<Void>>
 
     companion object {
         val instance = ApiGenerator().generate(SandraMallApi::class.java)

@@ -15,7 +15,7 @@ class ProductRegistrationActivity : BaseActivity<ProductRegistrationViewModel>()
             .setContentView(this)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Upload Product"
+        supportActionBar?.title = "Upload Your Products"
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
