@@ -28,7 +28,7 @@ interface SandraMallApi {
     ): ApiResponse<ProductImageUploadResponse>
 
     @POST("/api/v1/products")
-    fun registerProduct(
+    suspend fun registerProduct(
         @Body request: ProductRegistrationRequest
     ): ApiResponse<Response<Void>>
 
