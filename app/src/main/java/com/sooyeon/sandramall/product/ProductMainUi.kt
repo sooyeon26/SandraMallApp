@@ -6,8 +6,13 @@ import android.view.Menu.NONE
 import android.view.MenuItem
 import android.view.MenuItem.SHOW_AS_ACTION_ALWAYS
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.ViewCompat.generateViewId
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.GRAVITY_FILL
+import com.google.android.material.tabs.TabLayout.MODE_SCROLLABLE
 import com.sooyeon.sandramall.Prefs
 import com.sooyeon.sandramall.R
 import com.sooyeon.sandramall.signin.SigninActivity
@@ -17,7 +22,9 @@ import org.jetbrains.anko.design.navigationView
 import org.jetbrains.anko.support.v4.drawerLayout
 import org.jetbrains.anko.appcompat.v7.toolbar
 import org.jetbrains.anko.design.floatingActionButton
+import org.jetbrains.anko.design.themedTabLayout
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.support.v4.viewPager
 
 class ProductMainUi(
     private val viewModel: ProductMainViewModel
@@ -26,6 +33,8 @@ class ProductMainUi(
     lateinit var drawerLayout: DrawerLayout
     lateinit var toolbar: Toolbar
     lateinit var navigationView: NavigationView
+    lateinit var tablayout: TabLayout
+    lateinit var viewpager: ViewPager
 
     override fun createView(ui: AnkoContext<ProductMainActivity>) =
         ui.drawerLayout {
@@ -41,11 +50,27 @@ class ProductMainUi(
                             .setIcon(R.drawable.ic_search)
                             .setShowAsAction(SHOW_AS_ACTION_ALWAYS)
                     }.lparams(matchParent, wrapContent)
+
+
+                    tablayout = themedTabLayout(
+                        R.style.Widget_MaterialComponents_TabLayout
+                    ) {
+                        bottomPadding = dip(1)
+                        tabMode = MODE_SCROLLABLE
+                        tabGravity = GRAVITY_FILL
+                        background = borderBottom(width = dip(1))
+                        lparams(matchParent, wrapContent)
+                    }
+
+                    viewpager = viewPager {
+                        id = generateViewId()
+                    }.lparams(matchParent, matchParent)
                 }
 
                 floatingActionButton {
                     imageResource = R.drawable.ic_add_simple
-                    backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.colorPrimaryDark))
+                    backgroundTintList =
+                        ColorStateList.valueOf(resources.getColor(R.color.colorPrimaryDark))
                     onClick { viewModel.openProductRegistrationActivity() }
                 }.lparams {
                     bottomMargin = dip(20)

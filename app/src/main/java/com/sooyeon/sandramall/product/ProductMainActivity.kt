@@ -3,6 +3,7 @@ package com.sooyeon.sandramall.product
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.sooyeon.sandramall.R
+import com.sooyeon.sandramall.product.list.ProductListPageradapter
 import net.codephobia.ankomvvm.components.BaseActivity
 import org.jetbrains.anko.setContentView
 
@@ -14,6 +15,9 @@ class ProductMainActivity : BaseActivity<ProductMainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ui.setContentView(this)
+        ui.viewpager.adapter =
+            ProductListPageradapter(supportFragmentManager)
+        ui.tablayout.setupWithViewPager(ui.viewpager)
         setupDrawerListener()
     }
 

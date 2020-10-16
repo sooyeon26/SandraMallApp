@@ -7,8 +7,8 @@ data class Category(
 
 val categoryList = listOf(
     Category(0, "Accessory"),
-    Category(1, "Food"),
-    Category(2, "Household"),
-    Category(3, "Leather"),
-    Category(4, "Painting")
+    Category(1, "Leather"),
+    Category(2, "Painting"),
+    Category(3, "HomeDeco"),
+    Category(4, "Others")
 )
