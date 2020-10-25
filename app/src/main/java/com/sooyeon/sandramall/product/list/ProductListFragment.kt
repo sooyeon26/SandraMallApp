@@ -16,27 +16,29 @@ class ProductListFragment : BaseFragment<ProductListViewModel>() {
 
     val categoryId
         get() = arguments?.getInt("categoryId")
-            ?: throw IllegalStateException("no category ID")
+                ?: throw IllegalStateException("no category ID")
 
-    val title
-        get() = arguments?.getString("title")
-            ?: throw IllegalStateException("no title")
+                val title
+                get() = arguments?.getString("title")
+                    ?: throw IllegalStateException("no title")
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return AnkoContext.create(ctx, this).verticalLayout {
-            textView(categoryId.toString())
-            textView(title)
-        }
-    }
+                override fun onCreateView(
+                    inflater: LayoutInflater,
+                    container: ViewGroup?,
+                    savedInstanceState: Bundle?
+                ): View? {
+
+                    val viewModel = getViewModel()
+                    viewModel.categoryId = categoryId
+
+                    return ProductListUi(viewModel)
+                        .createView(AnkoContext.create(ctx, this))
+                }
 
 
-    companion object {
-        fun newInstance(categoryId: Int, title: String) =
-            ProductListFragment().apply {
+                companion object {
+                    fun newInstance(categoryId: Int, title: String) =
+                        ProductListFragment().apply {
                 arguments = Bundle().also {
                     it.putInt("categoryId", categoryId)
                     it.putString("title", title)

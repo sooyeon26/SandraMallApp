@@ -4,6 +4,7 @@ import com.sooyeon.sandramall.api.request.ProductRegistrationRequest
 import com.sooyeon.sandramall.api.request.SigninRequest
 import com.sooyeon.sandramall.api.request.SignupRequest
 import com.sooyeon.sandramall.api.response.ApiResponse
+import com.sooyeon.sandramall.api.response.ProductListItemResponse
 import com.sooyeon.sandramall.api.response.SigninResponse
 import com.sooyeon.sandramall.product.response.ProductImageUploadResponse
 import okhttp3.MultipartBody
@@ -31,6 +32,13 @@ interface SandraMallApi {
     suspend fun registerProduct(
         @Body request: ProductRegistrationRequest
     ): ApiResponse<Response<Void>>
+
+    @GET("/api/v1/products")
+    suspend fun getProducts(
+        @Query("productId") productId: Long,
+        @Query("categoryId") categoryId: Int?,
+        @Query("direction") direction: String
+    ): ApiResponse<List<ProductListItemResponse>>
 
     companion object {
         val instance = ApiGenerator().generate(SandraMallApi::class.java)
