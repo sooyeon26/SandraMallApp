@@ -5,6 +5,7 @@ import com.sooyeon.sandramall.api.request.SigninRequest
 import com.sooyeon.sandramall.api.request.SignupRequest
 import com.sooyeon.sandramall.api.response.ApiResponse
 import com.sooyeon.sandramall.api.response.ProductListItemResponse
+import com.sooyeon.sandramall.api.response.ProductResponse
 import com.sooyeon.sandramall.api.response.SigninResponse
 import com.sooyeon.sandramall.product.response.ProductImageUploadResponse
 import okhttp3.MultipartBody
@@ -39,6 +40,10 @@ interface SandraMallApi {
         @Query("categoryId") categoryId: Int?,
         @Query("direction") direction: String
     ): ApiResponse<List<ProductListItemResponse>>
+
+    @GET("/api/v1/products/{id}")
+    suspend fun getProduct(@Path("id") id: Long)
+            : ApiResponse<ProductResponse>
 
     companion object {
         val instance = ApiGenerator().generate(SandraMallApi::class.java)

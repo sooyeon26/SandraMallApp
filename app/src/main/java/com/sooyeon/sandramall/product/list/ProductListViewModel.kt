@@ -1,8 +1,10 @@
 package com.sooyeon.sandramall.product.list
 
 import android.app.Application
+import android.content.Intent
 import androidx.paging.DataSource
 import com.sooyeon.sandramall.api.response.ProductListItemResponse
+import com.sooyeon.sandramall.product.detail.ProductDetailActivity
 import net.codephobia.ankomvvm.lifecycle.BaseViewModel
 import org.jetbrains.anko.error
 import java.lang.IllegalStateException
@@ -32,11 +34,9 @@ class ProductListViewModel(
     override fun onClickProduct(productId: Long?) {
         onClickItem(productId)
 
-        //TODO
-//        startActivity<ProductDetailActivity> {
-//            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-//            putExtra(ProductDetailActivity.PRODUCT_ID, productId)
-//        }
-
+        startActivity<ProductDetailActivity> {
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            putExtra(ProductDetailActivity.PRODUCT_ID, productId)
+        }
     }
 }

@@ -28,6 +28,9 @@
         <activity
             android:name=".product.registration.ProductRegistrationActivity"
             android:theme="@style/AppThemeActionBar" />
+        <activity
+            android:name=".product.detail.ProductDetailActivity"
+            android:theme="@style/AppThemeActionBar" />
 
     </application>
 </manifest>
