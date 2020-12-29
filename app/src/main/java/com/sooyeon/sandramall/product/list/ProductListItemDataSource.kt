@@ -13,7 +13,8 @@ import org.jetbrains.anko.toast
 import java.lang.Exception
 
 class ProductListItemDataSource(
-    private val categoryId: Int?
+    private val categoryId: Int?,
+    private val keyword: String? = null
 ) : PageKeyedDataSource<Long, ProductListItemResponse>() {
 
 
@@ -74,7 +75,7 @@ class ProductListItemDataSource(
 
     private fun getProducts(id: Long, direction: String) = runBlocking {
         try {
-            SandraMallApi.instance.getProducts(id, categoryId, direction)
+            SandraMallApi.instance.getProducts(id, categoryId, direction, keyword)
         } catch (e: Exception) {
             ApiResponse.error<List<ProductListItemResponse>>(
                 "unknown error while getting products"

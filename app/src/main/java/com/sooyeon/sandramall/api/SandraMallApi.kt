@@ -38,7 +38,8 @@ interface SandraMallApi {
     suspend fun getProducts(
         @Query("productId") productId: Long,
         @Query("categoryId") categoryId: Int?,
-        @Query("direction") direction: String
+        @Query("direction") direction: String,
+        @Query("keyword") keyword: String? = null
     ): ApiResponse<List<ProductListItemResponse>>
 
     @GET("/api/v1/products/{id}")
